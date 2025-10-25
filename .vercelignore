@@ -1,0 +1,33 @@
+# Vercel ignore file
+# Exclude development files and unnecessary assets
+
+# Development files
+*.log
+*.tmp
+.DS_Store
+.vscode/
+.idea/
+
+# Node modules (will be installed on Vercel)
+node_modules/
+
+# Git files
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Test files
+__tests__/
+*.test.*
+*.spec.*
+
+# Build artifacts
+.next/
+out/
+dist/
+
+# Environment files (use Vercel environment variables instead)
+.env*

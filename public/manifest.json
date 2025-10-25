@@ -1,0 +1,16 @@
+{
+  "name": "Mann Gupta - Software Engineer & AI/ML Developer",
+  "short_name": "Mann Gupta Portfolio",
+  "description": "Professional portfolio of Mann Gupta - Software Engineer & AI/ML Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#fbbf24",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

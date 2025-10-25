@@ -1,0 +1,301 @@
+{
+  "personal": {
+    "name": "Mann Gupta",
+    "location": "Bangalore, India",
+    "title": "Software Engineer & AI/ML Developer",
+    "email": "manngupta923@gmail.com",
+    "phone": "+91 6266725150",
+    "handle": "@mann-gupta1",
+    "bio": "Hey 👋\nI'm Mann, a fast-learning and detail-oriented Software Engineer with hands-on experience in backend development, AI/ML, DevOps, and full-stack engineering. Skilled in designing scalable systems, optimizing cloud infrastructure, and building intelligent automation pipelines. Passionate about solving complex problems through clean architecture and continuous learning.",
+    "avatar": "/avatar.png",
+    "fallbackAvatar": "/avatar.png"
+  },
+  "education": {
+    "current": {
+      "degree": "B.Tech in Information Technology",
+      "institution": "Rajiv Gandhi Institute of Petroleum Technology (RGIPT), Jais, U.P., India",
+      "duration": "2021-2025",
+      "cgpa": "8.25/10.0",
+      "graduationDate": "May 2025"
+    },
+    "previous": {
+      "degree": "Higher Secondary Certificate (Science Stream)",
+      "institution": "Board of Secondary Education",
+      "duration": "2021",
+      "percentage": "95%",
+      "completionDate": "March 2021"
+    },
+    "achievements": [
+      "Qualified JEE Advanced (2021) among 1M+ candidates",
+      "Achieved 1900+ LeetCode rating, showcasing consistent programming excellence",
+      "CGPA: 8.25/10.0 in B.Tech Information Technology"
+    ]
+  },
+  "experience": [
+    {
+      "company": "WorkIndia",
+      "position": "Software Developer Intern",
+      "type": "Internship",
+      "duration": "Feb 2025 - July 2025",
+      "description": "Optimized and migrated Amazon EKS cluster for 15+ production microservices, improving scalability and reducing costs. Developed and integrated Python-based microservices (RESTful architecture), enhancing modularity and communication. Implemented auto-scaling in Amazon EKS, reducing operational costs by 50%. Rolled out WIRequest across 10+ microservices with StatsD and Grafana, enabling real-time monitoring.",
+      "technologies": ["Python", "Amazon EKS", "Kubernetes", "Docker", "AWS", "Grafana", "StatsD", "Microservices", "CI/CD"]
+    },
+    {
+      "company": "ITC Infotech",
+      "position": "Generative AI Intern",
+      "type": "Internship",
+      "duration": "Sept 2024 - Nov 2024",
+      "description": "Developed a Chatbot system enabling interactive querying across various file formats, delivering accurate and rapid responses directly from large documents. Utilized the Agentic AI framework to create two specialized bots — a Customer Support Bot that resolves user queries autonomously and an HR Bot that handles employee inquiries, reducing HR workload and improving response efficiency.",
+      "technologies": ["Python", "Generative AI", "LangChain", "Agentic AI", "Chatbot Development", "Document Processing", "AI Frameworks"]
+    },
+    {
+      "company": "Gush",
+      "position": "Software Developer Intern",
+      "type": "Internship",
+      "duration": "Jun 2024 - July 2024",
+      "description": "Designed machine learning models to filter and cluster LLM-generated keywords, improving data accuracy and organization. Formulated a relevance scoring algorithm to enhance keyword precision and processing efficiency. Built and tested web endpoints using Postman, resolving frontend issues and boosting performance. Proposed cost-optimization strategies for keyword generation workflows, reducing computational overhead.",
+      "technologies": ["Python", "Machine Learning", "LLM", "Postman", "Web Development", "Algorithm Design", "Cost Optimization"]
+    }
+  ],
+  "skills": {
+    "programming": ["Python", "C", "C++", "Java", "JavaScript", "SQL", "HTML/CSS"],
+    "ml_ai": ["TensorFlow", "Keras", "Scikit-learn", "LangChain", "Agno", "Machine Learning", "Deep Learning", "CNN", "Generative AI"],
+    "web_development": ["Django", "Node.js", "React.js", "Next.js", "REST APIs", "Git/GitHub"],
+    "databases": ["MySQL", "PostgreSQL", "MongoDB"],
+    "devops_cloud": ["AWS (EC2, EKS, S3)", "Docker", "Kubernetes", "Jenkins", "Bitbucket", "CI/CD", "GCP", "Grafana", "Ansible"],
+    "iot_hardware": [],
+    "soft_skills": ["Fast Learning", "Problem Solving", "Team Collaboration", "Attention to Detail", "Adaptability", "Proactive", "Communication"]
+  },
+  "projects": [
+    {
+      "title": "Pneumonia Detection using CNN",
+      "category": "Machine Learning/Healthcare",
+      "description": "Designed a CNN model achieving 92% accuracy in pneumonia classification, improving diagnostic reliability. Optimized training with batch processing and GPU acceleration, reducing training time. Evaluated performance using precision, recall, and F1-score for robust detection results.",
+      "techStack": ["Python", "TensorFlow", "Keras", "CNN", "Deep Learning", "Medical Imaging", "GPU Acceleration"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/pneumonia-detection"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "Pneumonia Detection CNN Model"
+        }
+      ]
+    },
+    {
+      "title": "EduTube – Live Streaming Educational App",
+      "category": "Full-Stack Web Development",
+      "description": "Engineered a secure authentication and profile management system supporting real-time user access. Streamlined deployments through CI/CD automation with GitHub Actions and Docker. Created AI-filtered content feeds to enable distraction-free learning environments.",
+      "techStack": ["React.js", "Node.js", "Docker", "GitHub Actions", "CI/CD", "Authentication", "Real-time Streaming", "AI Content Filtering"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/edutube"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "EduTube Live Streaming Educational App"
+        }
+      ]
+    },
+    {
+      "title": "Multi-Tenant Project Management System",
+      "category": "Full-Stack Web Development",
+      "description": "Architected a multi-tenant task management platform inspired by Jira, enabling team-based project tracking and task assignment across isolated tenant workspaces. Implemented role-based access control, project analytics, and real-time task updates, improving collaboration and visibility for multiple organizations. Designed scalable backend APIs using Node.js with TypeScript and integrated MongoDB for efficient tenant data isolation and performance.",
+      "techStack": ["TypeScript", "Node.js", "MongoDB", "Multi-Tenant Architecture", "Role-Based Access Control", "Real-time Updates", "Project Analytics", "REST APIs"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/multi-tenant-pms"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "Multi-Tenant Project Management System"
+        }
+      ]
+    },
+    {
+      "title": "Course Differentiator",
+      "category": "AI/ML & Web Development",
+      "description": "Developed a platform to aggregate and analyze AI/ML, JEE, and NEET course data from multiple websites using web scraping (BeautifulSoup). Built an AI-powered chatbot that provides personalized course recommendations based on user skills and preferences. Designed an interactive React-based UI and backend in PHP to streamline data presentation and enhance decision-making for learners.",
+      "techStack": ["React", "PHP", "BeautifulSoup", "Generative AI", "Web Scraping", "AI Chatbot", "Data Analysis", "Personalized Recommendations"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/course-differentiator"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "Course Differentiator Platform"
+        }
+      ]
+    },
+    {
+      "title": "Job Scheduling and Management System",
+      "category": "Data Structures & Algorithms",
+      "description": "Engineered a C++ scheduling module to manage and prioritize multiple project jobs based on time and budget constraints. Implemented custom data structures including Trie, Min/Max Heap, and Red-Black Tree to achieve efficient data storage and retrieval. Optimized algorithmic performance for large-scale job handling and computation-heavy workflows.",
+      "techStack": ["C++", "Data Structures", "Algorithms", "Trie", "Min/Max Heap", "Red-Black Tree", "Job Scheduling", "Performance Optimization"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/job-scheduling-system"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "Job Scheduling and Management System"
+        }
+      ]
+    },
+    {
+      "title": "Player-Ball Interaction Analysis",
+      "category": "Computer Vision & Deep Learning",
+      "description": "Designed a computer vision pipeline to analyze player interactions with the ball in sports videos, extracting touch counts, ball rotation, and player velocity. Built a biomechanical analysis model with dynamic overlays to visualize player-ball interactions and performance metrics in real time. Demonstrated applied skills in computer vision, multimodal analytics, and deep learning for sports performance tracking.",
+      "techStack": ["Computer Vision", "Deep Learning", "OpenCV", "TensorFlow", "Biomechanical Analysis", "Sports Analytics", "Real-time Processing", "Multimodal Analytics"],
+      "date": "2024",
+      "status": "Completed",
+      "featured": true,
+      "links": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/mann-gupta1/player-ball-analysis"
+        }
+      ],
+      "images": [
+        {
+          "src": "/placeholder.jpg",
+          "alt": "Player-Ball Interaction Analysis"
+        }
+      ]
+    }
+  ],
+  "social": {
+    "linkedin": "https://linkedin.com/in/gupta-mann",
+    "github": "https://github.com/mann-gupta1",
+    "twitter": "",
+    "kaggle": "",
+    "leetcode": "https://leetcode.com/m-g",
+    "fiverr": "",
+    "portfolio": ""
+  },
+  "internship": {
+    "seeking": true,
+    "duration": "6 months",
+    "startDate": "Immediate",
+    "preferredLocation": "Remote preferred; open to relocation anywhere in India",
+    "focusAreas": ["Backend Development", "Software Engineering", "AI/ML Engineering", "DevOps Engineering"],
+    "availability": "Available for immediate start",
+    "workStyle": "Fast learner, collaborative team player, and proactive problem solver. Known for adapting quickly to new technologies, maintaining attention to detail, and driving efficient, scalable solutions in team-oriented environments.",
+    "goals": "Join an innovative team building scalable solutions. I want to contribute to meaningful projects while growing my skills in enterprise-level development, cloud infrastructure, and AI/ML systems."
+  },
+  "personality": {
+    "traits": ["fast-learning", "detail-oriented", "collaborative", "proactive", "adaptable"],
+    "interests": ["AI/ML", "Backend Development", "DevOps", "Cloud Infrastructure", "New Technologies", "Sports", "Traveling"],
+    "funFacts": [
+      "Qualified JEE Advanced (2021) among 1M+ candidates",
+      "Achieved 1900+ LeetCode rating, showcasing consistent programming excellence",
+      "Reduced operational costs by 50% through auto-scaling implementation",
+      "Built CNN model with 92% accuracy for pneumonia detection"
+    ],
+    "workingStyle": "Fast learner, collaborative team player, and proactive problem solver. Known for adapting quickly to new technologies, maintaining attention to detail, and driving efficient, scalable solutions in team-oriented environments.",
+    "motivation": "Exploring new technologies, working on AI-driven projects, and building technology that makes a real impact on people's lives through scalable solutions and automation"
+  },
+  "resume": {
+    "title": "Mann Gupta - Resume",
+    "description": "Software Engineer & AI/ML Developer | JEE Advanced Qualified | 1900+ LeetCode Rating",
+    "fileType": "PDF",
+    "lastUpdated": "January 2025",
+    "fileSize": "1.5 MB",
+    "downloadUrl": "https://drive.google.com/file/d/1DablFSI4QwjNqfbQhcJQDGvcuX24jeIl/view"
+  },
+  "chatbot": {
+    "name": "Mann",
+    "personality": "professional, enthusiastic, tech-savvy",
+    "tone": "friendly and conversational",
+    "language": "english",
+    "responseStyle": "short and interactive",
+    "useEmojis": true,
+    "topics": ["projects", "skills", "experience", "internship", "contact", "fun_facts", "certifications", "achievements"]
+  },
+  "presetQuestions": {
+    "me": [
+      "Who are you?",
+      "Tell me about yourself",
+      "What's your background?",
+      "What are your passions?",
+      "How did you get started in tech?",
+      "Where do you see yourself in 5 years?"
+    ],
+    "professional": [
+      "What are your skills?",
+      "Can I see your resume?",
+      "What's your experience?",
+      "Are you looking for internships?",
+      "What makes you a valuable team member?",
+      "Tell me about your Amazon ML Summer School experience",
+      "What certifications do you have?",
+      "Why should I hire you?",
+      "What's your educational background?",
+      "How was your experience as a freelancer?"
+    ],
+    "projects": [
+      "What projects are you most proud of?",
+      "Tell me about your AI projects",
+      "What are your recent projects?",
+      "Tell me about your best project",
+      "What are you working on?",
+      "Show me your machine learning projects"
+    ],
+    "achievements": [
+      "What are your major achievements?",
+      "Tell me about Smart India Hackathon",
+      "What awards have you won?",
+      "Tell me about your Amazon selection"
+    ],
+    "contact": [
+      "How can I reach you?",
+      "How can I contact you?",
+      "What's your email?",
+      "Where can I find you online?",
+      "What kind of project would make you say 'yes' immediately?",
+      "Where are you located?"
+    ],
+    "fun": [
+      "What are your hobbies?",
+      "Tell me something interesting about you",
+      "What motivates you?",
+      "What's a fun fact about you?"
+    ]
+  },
+  "meta": {
+    "configVersion": "2.0",
+    "lastUpdated": "2025-01-15",
+    "generatedBy": "Mann Gupta",
+    "description": "Updated portfolio configuration with Mann Gupta's professional information including work experience at WorkIndia, ITC Infotech, and Gush, along with technical skills and projects"
+  }
+}
