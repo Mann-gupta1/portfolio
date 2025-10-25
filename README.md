@@ -7,11 +7,6 @@ A modern portfolio chat application built with Next.js, featuring an AI-powered 
 - AI-powered chat interface
 - Portfolio information display
 - Responsive design
-- Dark theme optimized
-
-## Deployment
-
-This application is optimized for Vercel deployment.
 
 ### Environment Variables
 
@@ -22,7 +17,7 @@ Make sure to set the following environment variables in your Vercel dashboard:
 ### Build
 
 ```bash
-npm run build
+npm install
 ```
 
 ### Development
