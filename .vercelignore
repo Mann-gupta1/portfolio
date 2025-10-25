@@ -1,5 +1,6 @@
-# Vercel ignore file
-# Exclude development files and unnecessary assets
+# ===============================
+# 🚀 Vercel Ignore Configuration
+# ===============================
 
 # Development files
 *.log
@@ -8,26 +9,35 @@
 .vscode/
 .idea/
 
-# Node modules (will be installed on Vercel)
+# Node modules (Vercel installs these automatically)
 node_modules/
 
-# Git files
+# Git repository files
 .git/
 .gitignore
 
 # Documentation
 README.md
+CHANGELOG.md
 *.md
 
-# Test files
+# Tests
 __tests__/
 *.test.*
 *.spec.*
 
-# Build artifacts
+# Local build outputs (Vercel runs build itself)
 .next/
 out/
 dist/
 
-# Environment files (use Vercel environment variables instead)
-.env*
+# Environment files (set via Vercel dashboard instead)
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+
+# Other temporary or cache folders
+.cache/
+coverage/
