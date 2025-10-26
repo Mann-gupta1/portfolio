@@ -303,6 +303,16 @@ const Chat = () => {
     },
   });
 
+  // Debug logging to check useChat hook functions
+  useEffect(() => {
+    console.log('useChat functions:', {
+      handleInputChange: typeof handleInputChange,
+      setInput: typeof setInput,
+      input: input,
+      handleSubmit: typeof handleSubmit
+    });
+  }, [handleInputChange, setInput, input, handleSubmit]);
+
   const { currentAIMessage, latestUserMessage, hasActiveTool } = useMemo(() => {
     const latestAIMessageIndex = messages.findLastIndex(
       (m) => m.role === 'assistant'
@@ -423,10 +433,12 @@ const Chat = () => {
   useEffect(() => {
     if (initialQuery && !autoSubmitted) {
       setAutoSubmitted(true);
-      setInput('');
+      if (typeof setInput === 'function') {
+        setInput('');
+      }
       submitQuery(initialQuery);
     }
-  }, [initialQuery, autoSubmitted]);
+  }, [initialQuery, autoSubmitted, setInput]);
 
   //@ts-ignore
   const onSubmit = (e) => {
@@ -631,7 +643,7 @@ const Chat = () => {
             <ChatBottombar
               input={input}
               handleInputChange={handleInputChange}
-              handleSubmit={onSubmit}
+              handleSubmit={handleSubmit}
               isLoading={isLoading}
               stop={handleStop}
               isToolInProgress={isToolInProgress}

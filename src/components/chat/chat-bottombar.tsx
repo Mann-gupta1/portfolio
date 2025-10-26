@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import React, { useEffect } from 'react';
 
 interface ChatBottombarProps {
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     chatRequestOptions?: ChatRequestOptions
@@ -27,6 +27,11 @@ export default function ChatBottombar({
   isToolInProgress,
 }: ChatBottombarProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
+  
+  // Fallback handler if handleInputChange is not provided
+  const safeHandleInputChange = handleInputChange || (() => {
+    console.warn('handleInputChange not provided to ChatBottombar');
+  });
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -58,7 +63,7 @@ export default function ChatBottombar({
             ref={inputRef}
             type="text"
             value={input || ''}
-            onChange={handleInputChange}
+            onChange={safeHandleInputChange}
             onKeyDown={handleKeyPress}
             placeholder={
               isToolInProgress ? 'Tool is in progress...' : 'Ask me anything'
