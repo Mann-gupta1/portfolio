@@ -7,7 +7,11 @@ import Resume from '../resume';
 import Skills from '../skills';
 
 interface ToolRendererProps {
-  toolInvocations: any[];
+  toolInvocations: Array<{
+    toolCallId: string;
+    toolName: string;
+    result?: unknown;
+  }>;
   messageId: string;
 }
 
@@ -15,6 +19,8 @@ export default function ToolRenderer({
   toolInvocations,
   messageId,
 }: ToolRendererProps) {
+  // messageId is kept for future use
+  void messageId;
   return (
     <div className="w-full transition-all duration-300">
       {toolInvocations.map((tool) => {
@@ -66,7 +72,7 @@ export default function ToolRenderer({
           case 'getInternship':
             return (
               <div key={toolCallId} className="w-full rounded-lg">
-                <AvailabilityCard data={tool.result} />
+                <AvailabilityCard data={tool.result || null} />
               </div>
             );
 

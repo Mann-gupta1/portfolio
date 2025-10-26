@@ -93,7 +93,7 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
       </div>
 
       {/* Availability Highlight Section */}
-      <div className="mb-8 rounded-2xl bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 border border-green-200 dark:border-green-800">
+      <div className="mb-8 rounded-2xl bg-linear-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 border border-green-200 dark:border-green-800">
         <div className="flex items-center gap-3 mb-4">
           <div className="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center">
             <Briefcase className="h-4 w-4 text-white" />
@@ -144,7 +144,7 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
             <p className="text-foreground text-sm font-medium">Tech stack</p>
             <div className="text-muted-foreground grid grid-cols-1 gap-y-1 text-sm sm:grid-cols-2">
               <ul className="decoration-none list-disc pl-4">
-                {data?.skills.technical.slice(0, 4).map((skill, index) => (
+                {data?.skills?.technical?.slice(0, 4).map((skill, index) => (
                   <li key={index}>{skill}</li>
                 )) || (
                   <>
@@ -156,7 +156,7 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
                 )}
               </ul>
               <ul className="list-disc pl-4">
-                {data?.skills.technical.slice(4, 8).map((skill, index) => (
+                {data?.skills?.technical?.slice(4, 8).map((skill, index) => (
                   <li key={index}>{skill}</li>
                 )) || (
                   <>
@@ -186,9 +186,9 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
           What I bring
         </p>
         <p className="text-foreground text-sm">
-          {data?.experience.internshipCompleted || "Real-world ML experience from MookMati (Genre classification, FastAPI deployment, AWS)."} <br /> 
-          {data?.achievements[0] || "2nd position in Smart India Hackathon 2025 among 88,221 teams with hideFlare cybersecurity tool."} <br /> 
-          {data?.experience.freelanceWork || "25+ freelance automation projects delivered on Fiverr, cutting manual work by 60%."}
+          {data?.experience?.internshipCompleted || "Real-world ML experience from MookMati (Genre classification, FastAPI deployment, AWS)."} <br /> 
+          {data?.achievements?.[0] || "2nd position in Smart India Hackathon 2025 among 88,221 teams with hideFlare cybersecurity tool."} <br /> 
+          {data?.experience?.freelanceWork || "25+ freelance automation projects delivered on Fiverr, cutting manual work by 60%."}
         </p>
       </div>
 
@@ -196,7 +196,7 @@ const AvailabilityCard = ({ data }: AvailabilityCardProps) => {
       <div className="mt-8">
         <p className="text-foreground mb-2 text-lg font-semibold">Goal</p>
         <p className="text-foreground text-sm">
-          {data?.lookingFor.growthOpportunities || "Looking for roles that offer learning and advancement opportunities with experienced teams."} I want to work on {data?.lookingFor.technicalChallenges || "cutting-edge technologies"} that {data?.lookingFor.impactfulWork || "solve real-world problems and make a meaningful impact"}. I'm passionate, adaptable, and ready to contribute to {data?.lookingFor.collaboration || "collaborative, innovative environments"}! 🚀
+          {data?.lookingFor?.growthOpportunities || "Looking for roles that offer learning and advancement opportunities with experienced teams."} I want to work on {data?.lookingFor?.technicalChallenges || "cutting-edge technologies"} that {data?.lookingFor?.impactfulWork || "solve real-world problems and make a meaningful impact"}. I'm passionate, adaptable, and ready to contribute to {data?.lookingFor?.collaboration || "collaborative, innovative environments"}! 🚀
         </p>
       </div>
 
