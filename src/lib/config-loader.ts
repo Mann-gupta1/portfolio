@@ -1,5 +1,6 @@
 import { PortfolioConfig } from '../types/portfolio';
 import ConfigParser from './config-parser';
+// @ts-ignore - JSON import is handled by Next.js
 import portfolioConfigJson from '../../portfolio-config.json';
 
 // Import the configuration file

@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       // Common image hosting services
@@ -14,8 +13,9 @@ const nextConfig: NextConfig = {
     ],
   },
   eslint: {
+    // Ne bloque PAS le build en cas d'erreurs eslint
     ignoreDuringBuilds: true,
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
