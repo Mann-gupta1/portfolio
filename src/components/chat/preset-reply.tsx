@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Zap, X, Download } from 'lucide-react';
+import { Sparkles, X, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ChatBubble, ChatBubbleMessage } from '@/components/ui/chat/chat-bubble';
 
-// Import the same components that AI responses use
+// Import components
 import { Presentation } from '@/components/presentation';
 import AllProjects from '@/components/projects/AllProjects';
 import Skills from '@/components/skills';
@@ -18,19 +18,12 @@ interface PresetReplyProps {
   question: string;
   reply: string;
   tool: string;
-  onGetAIResponse: (question: string, tool: string) => void;
+  onGetAIResponse: (question: string) => void;
   onClose?: () => void;
 }
 
 export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }: PresetReplyProps) {
-  const [showAIOption, setShowAIOption] = useState(true);
-
-  const handleGetAIResponse = () => {
-    setShowAIOption(false);
-    onGetAIResponse(question, tool);
-  };
-
-  // Render the same components as AI responses for better consistency
+  // Render components based on tool
   const renderPresetComponent = () => {
     switch (tool) {
       case 'getPresentation':
@@ -89,60 +82,27 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
       transition={{ duration: 0.3 }}
       className="w-full max-w-3xl mx-auto mb-4"
     >
-      {/* If we have a component to render, show it like AI responses */}
       {presetComponent ? (
         <div className="w-full space-y-4">
-          {/* Render the component */}
           {presetComponent}
           
-          {/* Only show AI option when there's a major component - no text needed */}
-          {showAIOption && (
-            <ChatBubble variant="received">
-              <ChatBubbleMessage className="bg-gray-50/80 dark:bg-gray-800/80 w-full">
-                <div className="space-y-3 p-6 w-full">
-                  {onClose && (
-                    <div className="flex justify-end">
-                      <Button
-                        onClick={onClose}
-                        variant="ghost"
-                        size="sm"
-                        className="h-6 w-6 p-0 hover:bg-gray-200/50 rounded-full"
-                      >
-                        <X className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  )}
-                  
-                  <div className="flex flex-col gap-3 px-2">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <div className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400">
-                          <Zap className="w-3 h-3 flex-shrink-0" />
-                          <span className="font-medium">Preset Response</span>
-                        </div>
-                        <span className="text-xs text-gray-500">• I implemented this to save API quota</span>
-                      </div>
-                      <Button 
-                        onClick={handleGetAIResponse}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-blue-600 hover:text-white shadow-sm transition-all duration-200 hover:shadow-md self-start sm:self-auto"
-                      >
-                        <Sparkles className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                        Get AI Response
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </ChatBubbleMessage>
-            </ChatBubble>
+          {onClose && (
+            <div className="flex justify-end">
+              <Button
+                onClick={onClose}
+                variant="ghost"
+                size="sm"
+                className="h-8 w-8 p-0 hover:bg-gray-200/50 rounded-full"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
           )}
         </div>
-      ) : (        // Fallback to text-based preset for tools without components
+      ) : (
         <ChatBubble variant="received">
           <ChatBubbleMessage className="bg-gradient-to-r from-blue-50/50 to-purple-50/50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-100/50 dark:border-blue-800/50 w-full">
             <div className="space-y-4 p-6 w-full">
-              {/* Close button */}
               {onClose && (
                 <div className="flex justify-end">
                   <Button
@@ -156,12 +116,10 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                 </div>
               )}
               
-              {/* Reply content with enhanced formatting */}
               <div className="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 px-2">
                 {reply.split('\n').map((line, index) => {
                   if (line.trim() === '') return <br key={index} />;
                   
-                  // Handle download link specially
                   if (line.includes('Download Resume Here') && line.includes('http')) {
                     const urlMatch = line.match(/(https?:\/\/[^\s]+)/);
                     if (urlMatch) {
@@ -191,7 +149,6 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                     }
                   }
                   
-                  // Handle regular links
                   if (line.includes('http')) {
                     const parts = line.split(/(https?:\/\/[^\s]+)/);
                     return (
@@ -216,7 +173,6 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                     );
                   }
                   
-                  // Handle bold markdown
                   if (line.includes('**')) {
                     const parts = line.split('**');
                     return (
@@ -230,7 +186,6 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                     );
                   }
                   
-                  // Handle emoji lines (headers)
                   if (/^[🎯🚀💼🏆📊🔧🌟💡🎓📍🌍⚡🤝]/u.test(line)) {
                     return (
                       <p key={index} className="mb-2 last:mb-0 font-medium text-gray-800 dark:text-gray-200 text-base">
@@ -239,7 +194,6 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                     );
                   }
                   
-                  // Handle bullet points
                   if (line.startsWith('• ') || line.startsWith('- ')) {
                     return (
                       <p key={index} className="mb-1 last:mb-0 ml-4 text-gray-600 dark:text-gray-400">
@@ -256,34 +210,20 @@ export function PresetReply({ question, reply, tool, onGetAIResponse, onClose }:
                 })}
               </div>
               
-              {/* Enhanced AI option */}
-              {showAIOption && (
-                <div className="border-t border-gray-200/60 pt-4 mt-4">
-                  <div className="flex flex-col gap-3">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <div className="flex items-center gap-1.5 text-xs text-blue-600 dark:text-blue-400">
-                          <Zap className="w-3 h-3 flex-shrink-0" />
-                          <span className="font-medium">Optimized Response</span>
-                        </div>
-                        <span className="text-xs text-gray-500">• I implemented this to save API quota</span>
-                      </div>
-                      <Button 
-                        onClick={handleGetAIResponse}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-blue-600 hover:text-white shadow-sm transition-all duration-200 hover:shadow-md self-start sm:self-auto"
-                      >
-                        <Sparkles className="w-3 h-3 mr-1.5 flex-shrink-0" />
-                        Get AI Response
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              )}
+              <div className="border-t border-gray-200/60 pt-4 mt-4">
+                <Button 
+                  onClick={() => onGetAIResponse(question)}
+                  variant="outline"
+                  size="sm"
+                  className="text-xs bg-gradient-to-r from-purple-500 to-blue-500 text-white border-0 hover:from-purple-600 hover:to-blue-600 hover:text-white shadow-sm transition-all duration-200 hover:shadow-md"
+                >
+                  <Sparkles className="w-3 h-3 mr-1.5 flex-shrink-0" />
+                  Get More Details
+                </Button>
+              </div>
             </div>
-        </ChatBubbleMessage>
-      </ChatBubble>
+          </ChatBubbleMessage>
+        </ChatBubble>
       )}
     </motion.div>
   );

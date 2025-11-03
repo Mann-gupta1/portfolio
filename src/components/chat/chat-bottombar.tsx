@@ -1,17 +1,13 @@
 // src/components/chat/chat-bottombar.tsx
 'use client';
 
-import { ChatRequestOptions } from 'ai';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import React, { useEffect } from 'react';
 
 interface ChatBottombarProps {
   handleInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
-    chatRequestOptions?: ChatRequestOptions
-  ) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
   stop: () => void;
   input: string;
@@ -29,9 +25,7 @@ export default function ChatBottombar({
   const inputRef = React.useRef<HTMLInputElement>(null);
   
   // Fallback handler if handleInputChange is not provided
-  const safeHandleInputChange = handleInputChange || (() => {
-    console.warn('handleInputChange not provided to ChatBottombar');
-  });
+  const safeHandleInputChange = handleInputChange || (() => {});
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (

@@ -1,13 +1,14 @@
 export interface PersonalInfo {
   name: string;
-  age: number;
   location: string;
   title: string;
   email: string;
+  phone?: string;
   handle: string;
   bio: string;
   avatar: string;
   fallbackAvatar: string;
+  age?: number;
 }
 
 export interface Education {

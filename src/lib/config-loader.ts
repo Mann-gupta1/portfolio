@@ -1,12 +1,13 @@
 import { PortfolioConfig } from '../types/portfolio';
 import ConfigParser from './config-parser';
+import portfolioConfigJson from '../../portfolio-config.json';
 
-// Import the configuration file - using dynamic import for better compatibility
+// Import the configuration file
 let portfolioConfig: PortfolioConfig;
 
 try {
   // Import JSON configuration
-  portfolioConfig = require('../../portfolio-config.json') as PortfolioConfig;
+  portfolioConfig = portfolioConfigJson as PortfolioConfig;
 } catch (error) {
   console.error('Failed to load portfolio configuration:', error);
   // Provide a fallback minimal config to prevent the app from crashing
@@ -109,7 +110,6 @@ export const getConfig = (): PortfolioConfig => portfolioConfig;
 export const getConfigParser = (): ConfigParser => configParser;
 
 // Export pre-parsed common data for easy access
-export const systemPrompt = configParser.generateSystemPrompt();
 export const contactInfo = configParser.generateContactInfo();
 export const profileInfo = configParser.generateProfileInfo();
 export const skillsData = configParser.generateSkillsData();

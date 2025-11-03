@@ -1,122 +1,85 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText, tool } from 'ai';
-import { z } from 'zod';
-
-import { SYSTEM_PROMPT } from './prompt';
-import { getContact } from './tools/getContact';
-import { getInternship } from './tools/getIntership';
-import { getPresentation } from './tools/getPresentation';
-import { getProjects } from './tools/getProjects';
-import { getResume } from './tools/getResume';
-import { getSkills } from './tools/getSkills';
+import { findBestMatch, getSuggestedQuestions, qaData } from '@/lib/qa-data';
+import { ChatResponse } from '@/types/chat';
 
 export const maxDuration = 30;
-
-// Create Google AI provider with explicit API key
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
-});
-
-// ❌ Pas besoin de l'export ici, Next.js n'aime pas ça
-function errorHandler(error: unknown) {
-  if (error == null) {
-    return 'Unknown error';
-  }
-  if (typeof error === 'string') {
-    return error;
-  }
-  if (error instanceof Error) {
-    return error.message;
-  }
-  return JSON.stringify(error);
-}
 
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-    console.log('[CHAT-API] Incoming messages:', messages);
     
-    // Check if API key is available
-    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
-      console.error('[CHAT-API] Missing GOOGLE_GENERATIVE_AI_API_KEY environment variable');
+    // Get the last user message
+    const lastMessage = messages[messages.length - 1];
+    const userInput = lastMessage?.content || '';
+    
+    if (!userInput.trim()) {
       return new Response(JSON.stringify({ 
-        error: 'API key not configured. Please check environment variables.',
-        type: 'config_error'
+        error: 'No input provided',
+        type: 'invalid_input'
       }), { 
-        status: 500,
+        status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
     }
     
-    console.log('[CHAT-API] API key available:', process.env.GOOGLE_GENERATIVE_AI_API_KEY?.slice(0, 10) + '...');
-
-    // Add system prompt
-    messages.unshift(SYSTEM_PROMPT);
-
-    // Add tools
-    const tools = {
-      getProjects,
-      getPresentation,
-      getResume,
-      getContact,
-      getSkills,
-      getInternship,
-    };
-
-    console.log('[CHAT-API] About to call streamText');
+    // Find best matching Q&A
+    const match = findBestMatch(userInput);
     
-    const result = await streamText({
-      model: google('gemini-1.5-flash'),
-      messages,
-      tools,
-      maxSteps: 2,
+    if (!match) {
+      // Return a friendly message if no match found
+      const defaultAnswer = "I'm sorry, I couldn't find a specific answer to that question. Could you try rephrasing it or ask one of the suggested questions below?";
+      const suggestedQuestions = getSuggestedQuestions(new Set(), 5);
+      
+      const response: ChatResponse = {
+        answer: defaultAnswer,
+        suggestions: suggestedQuestions.map(qa => ({
+          question: qa.question,
+          answer: qa.answer
+        }))
+      };
+      
+      return new Response(JSON.stringify(response), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    // Track which questions have been asked (based on message history)
+    const askedQuestionIds = new Set<number>();
+    messages.forEach((msg: any) => {
+      if (msg.role === 'user') {
+        const msgMatch = findBestMatch(msg.content);
+        if (msgMatch) {
+          const qaIndex = qaData.findIndex(qa => qa.question === msgMatch.question);
+          if (qaIndex !== -1) {
+            askedQuestionIds.add(qaIndex);
+          }
+        }
+      }
     });
-
-    console.log('[CHAT-API] streamText completed successfully');
-    console.log('[CHAT-API] Result object keys:', Object.keys(result));
     
-    const response = result.toDataStreamResponse();
-    console.log('[CHAT-API] DataStreamResponse created');
+    // Get suggested questions (excluding the current one and already asked ones)
+    const currentQaIndex = qaData.findIndex(qa => qa.question === match.question);
+    if (currentQaIndex !== -1) {
+      askedQuestionIds.add(currentQaIndex);
+    }
     
-    return response;
+    const suggestedQuestions = getSuggestedQuestions(askedQuestionIds, 3);
+    
+    const response: ChatResponse = {
+      answer: match.answer,
+      suggestions: suggestedQuestions.map(qa => ({
+        question: qa.question,
+        answer: qa.answer
+      }))
+    };
+    
+    return new Response(JSON.stringify(response), {
+      headers: { 'Content-Type': 'application/json' }
+    });
+    
   } catch (error) {
     console.error('Chat API error:', error);
-    console.error('Error details:', error instanceof Error ? error.message : 'Unknown error');
-    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
     
-    // Safely extract error message
     const errorMessage = error instanceof Error ? error.message : String(error);
-    
-    // Handle specific error types
-    if (errorMessage.includes('quota') || errorMessage.includes('exceeded') || errorMessage.includes('429')) {
-      return new Response(JSON.stringify({ 
-        error: 'API quota exceeded. Please try again later.',
-        type: 'quota_exceeded'
-      }), { 
-        status: 429,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-    
-    if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
-      return new Response(JSON.stringify({ 
-        error: 'Network error. Please check your connection and try again.',
-        type: 'network_error'
-      }), { 
-        status: 503,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-    
-    if (errorMessage.includes('API key') || errorMessage.includes('authentication')) {
-      return new Response(JSON.stringify({ 
-        error: 'Authentication error. Please check API configuration.',
-        type: 'auth_error'
-      }), { 
-        status: 401,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
     
     return new Response(JSON.stringify({ 
       error: `Internal Server Error: ${errorMessage}`,
